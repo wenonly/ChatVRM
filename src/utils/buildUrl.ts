@@ -1,8 +1,8 @@
 import getConfig from "next/config";
 
 /**
- * github pagesに公開時にアセットを読み込めるようにするため、
- * 環境変数を見てURLにリポジトリ名を追加する
+ * 为了在发布到GitHub Pages时能够加载资源，
+ * 通过查看环境变量来在URL中添加仓库名
  */
 export function buildUrl(path: string): string {
   const {

@@ -3,7 +3,7 @@ import Head from "next/head";
 export const Meta = () => {
   const title = "ChatVRM";
   const description =
-    "Webブラウザだけで3Dキャラクターとの会話を、マイクやテキスト入力、音声合成を用いて楽しめます。キャラクター（VRM）の変更や性格設定、音声調整もできます。";
+    "仅使用网页浏览器，您就可以通过麦克风、文本输入和语音合成与3D角色进行对话。您还可以更改角色（VRM）、设置性格和调整语音。";
   const imageUrl = "https://pixiv.github.io/ChatVRM/ogp.png";
   return (
     <Head>

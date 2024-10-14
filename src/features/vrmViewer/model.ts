@@ -8,7 +8,7 @@ import { EmoteController } from "../emoteController/emoteController";
 import { Screenplay } from "../messages/messages";
 
 /**
- * 3Dキャラクターを管理するクラス
+ * 管理3D角色的类
  */
 export class Model {
   public vrm?: VRM | null;
@@ -51,14 +51,14 @@ export class Model {
   }
 
   /**
-   * VRMアニメーションを読み込む
+   * 加载VRM动画
    *
    * https://github.com/vrm-c/vrm-specification/blob/master/specification/VRMC_vrm_animation-1.0/README.ja.md
    */
   public async loadAnimation(vrmAnimation: VRMAnimation): Promise<void> {
     const { vrm, mixer } = this;
     if (vrm == null || mixer == null) {
-      throw new Error("You have to load VRM first");
+      throw new Error("您必须先加载VRM");
     }
 
     const clip = vrmAnimation.createAnimationClip(vrm);
@@ -67,7 +67,7 @@ export class Model {
   }
 
   /**
-   * 音声を再生し、リップシンクを行う
+   * 播放音频并进行唇形同步
    */
   public async speak(buffer: ArrayBuffer, screenplay: Screenplay) {
     this.emoteController?.playEmotion(screenplay.expression);

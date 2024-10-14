@@ -54,9 +54,9 @@ export const Settings = ({
       </div>
       <div className="max-h-full overflow-auto">
         <div className="text-text1 max-w-3xl mx-auto px-24 py-64 ">
-          <div className="my-24 typography-32 font-bold">設定</div>
+          <div className="my-24 typography-32 font-bold">设置</div>
           <div className="my-24">
-            <div className="my-16 typography-20 font-bold">OpenAI API キー</div>
+            <div className="my-16 typography-20 font-bold">OpenAI API 密钥</div>
             <input
               className="text-ellipsis px-16 py-8 w-col-span-2 bg-surface1 hover:bg-surface1-hover rounded-8"
               type="text"
@@ -65,35 +65,34 @@ export const Settings = ({
               onChange={onChangeAiKey}
             />
             <div>
-              APIキーは
+              API密钥可以在
               <Link
                 url="https://platform.openai.com/account/api-keys"
-                label="OpenAIのサイト"
+                label="OpenAI网站"
               />
-              で取得できます。取得したAPIキーをフォームに入力してください。
+              获取。请将获取的API密钥输入到表单中。
             </div>
             <div className="my-16">
-              ChatGPT
-              APIはブラウザから直接アクセスしています。また、APIキーや会話内容はピクシブのサーバには保存されません。
+              ChatGPT API是直接从浏览器访问的。此外,API密钥和对话内容不会保存在Pixiv的服务器上。
               <br />
-              ※利用しているモデルはChatGPT API (GPT-3.5)です。
+              ※使用的模型是ChatGPT API (GPT-3.5)。
             </div>
           </div>
           <div className="my-40">
             <div className="my-16 typography-20 font-bold">
-              キャラクターモデル
+              角色模型
             </div>
             <div className="my-8">
-              <TextButton onClick={onClickOpenVrmFile}>VRMを開く</TextButton>
+              <TextButton onClick={onClickOpenVrmFile}>打开VRM</TextButton>
             </div>
           </div>
           <div className="my-40">
             <div className="my-8">
               <div className="my-16 typography-20 font-bold">
-                キャラクター設定（システムプロンプト）
+                角色设置（系统提示）
               </div>
               <TextButton onClick={onClickResetSystemPrompt}>
-                キャラクター設定リセット
+                重置角色设置
               </TextButton>
             </div>
 
@@ -104,16 +103,16 @@ export const Settings = ({
             ></textarea>
           </div>
           <div className="my-40">
-            <div className="my-16 typography-20 font-bold">声の調整</div>
+            <div className="my-16 typography-20 font-bold">声音调整</div>
             <div>
-              KoemotionのKoeiromap APIを使用しています。詳しくは
+              使用Koemotion的Koeiromap API。详情请查看
               <Link
                 url="https://koemotion.rinna.co.jp"
                 label="https://koemotion.rinna.co.jp"
               />
-              をご覧ください。
+              。
             </div>
-            <div className="mt-16 font-bold">API キー</div>
+            <div className="mt-16 font-bold">API 密钥</div>
             <div className="mt-8">
               <input
                 className="text-ellipsis px-16 py-8 w-col-span-2 bg-surface1 hover:bg-surface1-hover rounded-8"
@@ -124,35 +123,35 @@ export const Settings = ({
               />
             </div>
 
-            <div className="mt-16 font-bold">プリセット</div>
+            <div className="mt-16 font-bold">预设</div>
             <div className="my-8 grid grid-cols-2 gap-[8px]">
               <TextButton
                 onClick={() =>
                   onChangeKoeiroParam(PRESET_A.speakerX, PRESET_A.speakerY)
                 }
               >
-                かわいい
+                可爱
               </TextButton>
               <TextButton
                 onClick={() =>
                   onChangeKoeiroParam(PRESET_B.speakerX, PRESET_B.speakerY)
                 }
               >
-                元気
+                活力
               </TextButton>
               <TextButton
                 onClick={() =>
                   onChangeKoeiroParam(PRESET_C.speakerX, PRESET_C.speakerY)
                 }
               >
-                かっこいい
+                帅气
               </TextButton>
               <TextButton
                 onClick={() =>
                   onChangeKoeiroParam(PRESET_D.speakerX, PRESET_D.speakerY)
                 }
               >
-                渋い
+                沉稳
               </TextButton>
             </div>
             <div className="my-24">
@@ -191,9 +190,9 @@ export const Settings = ({
           {chatLog.length > 0 && (
             <div className="my-40">
               <div className="my-8 grid-cols-2">
-                <div className="my-16 typography-20 font-bold">会話履歴</div>
+                <div className="my-16 typography-20 font-bold">对话历史</div>
                 <TextButton onClick={onClickResetChatLog}>
-                  会話履歴リセット
+                  重置对话历史
                 </TextButton>
               </div>
               <div className="my-8">
@@ -204,7 +203,7 @@ export const Settings = ({
                       className="my-8 grid grid-flow-col  grid-cols-[min-content_1fr] gap-x-fixed"
                     >
                       <div className="w-[64px] py-8">
-                        {value.role === "assistant" ? "Character" : "You"}
+                        {value.role === "assistant" ? "角色" : "你"}
                       </div>
                       <input
                         key={index}

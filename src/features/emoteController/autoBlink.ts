@@ -2,7 +2,7 @@ import { VRMExpressionManager } from "@pixiv/three-vrm";
 import { BLINK_CLOSE_MAX, BLINK_OPEN_MAX } from "./emoteConstants";
 
 /**
- * 自動瞬きを制御するクラス
+ * 控制自动眨眼的类
  */
 export class AutoBlink {
   private _expressionManager: VRMExpressionManager;
@@ -18,17 +18,17 @@ export class AutoBlink {
   }
 
   /**
-   * 自動瞬きをON/OFFする。
+   * 开启/关闭自动眨眼。
    *
-   * 目を閉じている(blinkが1の)時に感情表現を入れてしまうと不自然になるので、
-   * 目が開くまでの秒を返し、その時間待ってから感情表現を適用する。
+   * 当眼睛闭合（blink为1）时应用情感表情会显得不自然，
+   * 所以返回眼睛睁开所需的秒数，等待这段时间后再应用情感表情。
    * @param isAuto
-   * @returns 目が開くまでの秒
+   * @returns 眼睛睁开所需的秒数
    */
   public setEnable(isAuto: boolean) {
     this._isAutoBlink = isAuto;
 
-    // 目が閉じている場合、目が開くまでの時間を返す
+    // 如果眼睛闭合，返回眼睛睁开所需的时间
     if (!this._isOpen) {
       return this._remainingTime;
     }

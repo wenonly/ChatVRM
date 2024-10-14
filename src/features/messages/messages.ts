@@ -28,7 +28,7 @@ const emotions = ["neutral", "happy", "angry", "sad", "relaxed"] as const;
 type EmotionType = (typeof emotions)[number] & VRMExpressionPresetName;
 
 /**
- * 発話文と音声の感情と、モデルの感情表現がセットになった物
+ * 包含发言内容、语音情感和模型表情表现的组合
  */
 export type Screenplay = {
   expression: EmotionType;
