@@ -34,10 +34,21 @@ export const MessageInput = ({
               type="text"
               placeholder="请输入您想问的问题"
               onChange={onChangeUserMessage}
+              onKeyDown={(e) => {
+                if (
+                  e.key === "Enter" &&
+                  !e.shiftKey &&
+                  !isChatProcessing &&
+                  userMessage
+                ) {
+                  e.preventDefault();
+                  onClickSendButton(e as any);
+                }
+              }}
               disabled={isChatProcessing}
               className="bg-surface1 hover:bg-surface1-hover focus:bg-surface1 disabled:bg-surface1-disabled disabled:text-primary-disabled rounded-16 w-full px-16 text-text-primary typography-16 font-bold disabled"
               value={userMessage}
-            ></input>
+            />
 
             <IconButton
               iconName="24/Send"
@@ -48,9 +59,9 @@ export const MessageInput = ({
             />
           </div>
         </div>
-        <div className="py-4 bg-[#413D43] text-center text-white font-Montserrat">
+        {/* <div className="py-4 bg-[#413D43] text-center text-white font-Montserrat">
           由 VRoid、Koemotion、ChatGPT API 提供支持
-        </div>
+        </div> */}
       </div>
     </div>
   );

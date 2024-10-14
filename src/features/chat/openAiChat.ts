@@ -38,11 +38,11 @@ export async function getChatResponseStream(
     "Content-Type": "application/json",
     Authorization: `Bearer ${apiKey}`,
   };
-  const res = await fetch("https://api.openai.com/v1/chat/completions", {
+  const res = await fetch("https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions", {
     headers: headers,
     method: "POST",
     body: JSON.stringify({
-      model: "gpt-3.5-turbo",
+      model: "qwen-plus",
       messages: messages,
       stream: true,
       max_tokens: 200,

@@ -1,8 +1,6 @@
 import { wait } from "@/utils/wait";
-import { synthesizeVoiceApi } from "./synthesizeVoice";
 import { Viewer } from "../vrmViewer/viewer";
-import { Screenplay } from "./messages";
-import { Talk } from "./messages";
+import { Screenplay, Talk } from "./messages";
 
 const createSpeakCharacter = () => {
   let lastTime = 0;
@@ -51,20 +49,17 @@ export const fetchAudio = async (
   talk: Talk,
   apiKey: string
 ): Promise<ArrayBuffer> => {
-  const ttsVoice = await synthesizeVoiceApi(
-    talk.message,
-    talk.speakerX,
-    talk.speakerY,
-    talk.style,
-    apiKey
-  );
-  const url = ttsVoice.audio;
-
-  if (url == null) {
-    throw new Error("Something went wrong");
-  }
-
-  const resAudio = await fetch(url);
+  const resAudio = await fetch("http://127.0.0.1:5100/synthesize", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ text: talk.message, api_key: apiKey }),
+  });
   const buffer = await resAudio.arrayBuffer();
+  if (!buffer || buffer.byteLength === 0) {
+    console.error('接收到的音频缓冲区为空');
+    throw new Error('音频数据为空');
+  }
   return buffer;
 };

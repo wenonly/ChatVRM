@@ -20,8 +20,12 @@ export default function Home() {
   const { viewer } = useContext(ViewerContext);
 
   const [systemPrompt, setSystemPrompt] = useState(SYSTEM_PROMPT);
-  const [openAiKey, setOpenAiKey] = useState("");
-  const [koeiromapKey, setKoeiromapKey] = useState("");
+  const [openAiKey, setOpenAiKey] = useState(
+    process.env.NEXT_PUBLIC_ALI_API_KEY ?? ""
+  );
+  const [koeiromapKey, setKoeiromapKey] = useState(
+    process.env.NEXT_PUBLIC_ALI_API_KEY ?? ""
+  );
   const [koeiroParam, setKoeiroParam] = useState<KoeiroParam>(DEFAULT_PARAM);
   const [chatProcessing, setChatProcessing] = useState(false);
   const [chatLog, setChatLog] = useState<Message[]>([]);
@@ -59,7 +63,7 @@ export default function Home() {
   );
 
   /**
-   * 文ごとに音声を直列でリクエストしながら再生する
+   * 逐句串行请求并播放语音
    */
   const handleSpeakAi = useCallback(
     async (
@@ -73,12 +77,12 @@ export default function Home() {
   );
 
   /**
-   * アシスタントとの会話を行う
+   * 与助手进行对话
    */
   const handleSendChat = useCallback(
     async (text: string) => {
       if (!openAiKey) {
-        setAssistantMessage("APIキーが入力されていません");
+        setAssistantMessage("未输入API密钥");
         return;
       }
 
@@ -87,7 +91,7 @@ export default function Home() {
       if (newMessage == null) return;
 
       setChatProcessing(true);
-      // ユーザーの発言を追加して表示
+      // 添加并显示用户的发言
       const messageLog: Message[] = [
         ...chatLog,
         { role: "user", content: newMessage },
@@ -126,14 +130,14 @@ export default function Home() {
 
           receivedMessage += value;
 
-          // 返答内容のタグ部分の検出
+          // 检测回复内容的标签部分
           const tagMatch = receivedMessage.match(/^\[(.*?)\]/);
           if (tagMatch && tagMatch[0]) {
             tag = tagMatch[0];
             receivedMessage = receivedMessage.slice(tag.length);
           }
 
-          // 返答を一文単位で切り出して処理する
+          // 将回复按句子单位切分并处理
           const sentenceMatch = receivedMessage.match(
             /^(.+[。．！？\n]|.{10,}[、,])/
           );
@@ -144,7 +148,7 @@ export default function Home() {
               .slice(sentence.length)
               .trimStart();
 
-            // 発話不要/不可能な文字列だった場合はスキップ
+            // 如果是不需要/无法发音的字符串则跳过
             if (
               !sentence.replace(
                 /^[\s\[\(\{「［（【『〈《〔｛«‹〘〚〛〙›»〕》〉』】）］」\}\)\]]+$/g,
@@ -158,7 +162,7 @@ export default function Home() {
             const aiTalks = textsToScreenplay([aiText], koeiroParam);
             aiTextLog += aiText;
 
-            // 文ごとに音声を生成 & 再生、返答を表示
+            // 为每个句子生成语音并播放，同时显示回复
             const currentAssistantMessage = sentences.join(" ");
             handleSpeakAi(aiTalks[0], () => {
               setAssistantMessage(currentAssistantMessage);
@@ -172,7 +176,7 @@ export default function Home() {
         reader.releaseLock();
       }
 
-      // アシスタントの返答をログに追加
+      // 将助手的回复添加到日志中
       const messageLogAssistant: Message[] = [
         ...messageLog,
         { role: "assistant", content: aiTextLog },
