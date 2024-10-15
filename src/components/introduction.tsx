@@ -52,35 +52,15 @@ export const Introduction = ({
             />
             ，对话文本生成使用了
             <Link
-              url={
-                "https://openai.com/blog/introducing-chatgpt-and-whisper-apis"
-              }
-              label={"ChatGPT API"}
+              url={"https://www.aliyun.com/product/bailian"}
+              label={"阿里云百炼 API"}
             />
             ，语音合成使用了
-            <Link url={"https://koemotion.rinna.co.jp/"} label={"Koemotion"} />
-            的
             <Link
-              url={
-                "https://developers.rinna.co.jp/product/#product=koeiromap-free"
-              }
-              label={"Koeiromap API"}
-            />
-            。详情请查看这篇
-            <Link
-              url={"https://inside.pixiv.blog/2023/04/28/160000"}
-              label={"技术解析文章"}
+              url={"https://www.aliyun.com/product/bailian"}
+              label={"阿里云百炼 API"}
             />
             。
-          </div>
-          <div className="my-16">
-            这个演示的源代码在GitHub上公开。欢迎自由尝试修改和改进！
-            <br />
-            仓库：
-            <Link
-              url={"https://github.com/pixiv/ChatVRM"}
-              label={"https://github.com/pixiv/ChatVRM"}
-            />
           </div>
         </div>
 
@@ -95,46 +75,27 @@ export const Introduction = ({
 
         <div className="my-24">
           <div className="my-8 font-bold typography-20 text-secondary">
-            Koeiromap API密钥
-          </div>
-          <input
-            type="text"
-            placeholder="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
-            value={koeiroMapKey}
-            onChange={handleKoeiromapKeyChange}
-            className="my-4 px-16 py-8 w-full h-40 bg-surface3 hover:bg-surface3-hover rounded-4 text-ellipsis"
-          ></input>
-          <div>
-            请从rinna Developers获取API密钥。
-            <Link
-              url="https://developers.rinna.co.jp/product/#product=koeiromap-free"
-              label="详情请点击这里"
-            />
-          </div>
-        </div>
-        <div className="my-24">
-          <div className="my-8 font-bold typography-20 text-secondary">
-            OpenAI API密钥
+            阿里云百炼API密钥
           </div>
           <input
             type="text"
             placeholder="sk-..."
             value={openAiKey}
-            onChange={handleAiKeyChange}
+            onChange={(v) => {
+              handleAiKeyChange(v);
+              handleKoeiromapKeyChange(v);
+            }}
             className="my-4 px-16 py-8 w-full h-40 bg-surface3 hover:bg-surface3-hover rounded-4 text-ellipsis"
           ></input>
           <div>
             可以在
-            <Link
-              url="https://platform.openai.com/account/api-keys"
-              label="OpenAI网站"
-            />
+            <Link url="https://www.aliyun.com/product/bailian" label="阿里云" />
             获取API密钥。请将获取的API密钥输入到表单中。
           </div>
           <div className="my-16">
-            ChatGPT API是直接从浏览器访问的。此外，API密钥和对话内容不会保存在pixiv的服务器上。
+            阿里云API是直接从浏览器访问的。此外，API密钥和对话内容不会保存在服务器上。
             <br />
-            ※使用的模型是ChatGPT API (GPT-3.5)。
+            ※使用的模型是 通义千文-Plus。
           </div>
         </div>
         <div className="my-24">
