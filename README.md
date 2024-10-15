@@ -46,6 +46,15 @@ npm run dev
 
 ---
 
+## 运行docker
+
+```bash
+docker build -t chatvrm .
+docker run -d -p 3000:3000 -p 5100:5100 chatvrm
+# 或者使用我编译的镜像
+docker run -d -p 3000:3000 -p 5100:5100 wenonly/chatvrm
+```
+
 ## 阿里云百炼
 
 ChatVRM使用阿里云百炼进行回复文本生成和语音合成。
